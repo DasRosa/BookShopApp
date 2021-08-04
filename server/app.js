@@ -5,14 +5,14 @@ require('dotenv').config()
 
 let cors = require('cors')
 
-const test = require('./routes/test')
+const product = require('./routes/products')
 
 // middleware
 app.use(express.json())
 app.use(cors())
 
 // routes
-app.use('/api/v1/test', test)
+app.use('/api/v1/product', product)
 
 // port
 const port = process.env.PORT || 5000
