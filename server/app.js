@@ -5,7 +5,7 @@ require('dotenv').config()
 
 let cors = require('cors')
 
-const product = require('./routes/product')
+const product = require('./routes/products')
 
 // middleware
 app.use(express.json())

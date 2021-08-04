@@ -1,6 +1,6 @@
 const Product = require('../models/Product')
 
-const getAllProduct = async (req,res)=>{
+const getAllProducts = async (req,res)=>{
     try {
         const products = await Product.find({})
         res.status(200).json({ products })
@@ -60,7 +60,7 @@ const deleteProduct = async (req,res)=>{
     if(!product){
         return res.status(404).json({msg:`no product with id ${productId}`})
     }
-    
+
         res.status(200).json({product})
     } catch (error) {
         res.status(500).json({ msg: error })
@@ -68,7 +68,7 @@ const deleteProduct = async (req,res)=>{
 }
 
 module.exports = {
-    getAllProduct,
+    getAllProducts,
     createProduct,
     getProduct,
     updateProduct,
