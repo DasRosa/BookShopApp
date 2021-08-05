@@ -1,0 +1,32 @@
+.error {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  text-align: center;
+}
+
+.error img {
+  margin-top: 100px;
+}
+.btn {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: inline-block;
+  background: hsl(205, 78%, 60%);
+  color: white;
+  padding: 0.5rem 1.75rem;
+  border-radius: 0.5rem;
+  border-color: transparent;
+  text-transform: capitalize;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  margin-top: 0px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+
+  transition: all 0.3s linear;
+}
+.btn:hover {
+  background: #21415e;
+  color: #33ccff;
+}
