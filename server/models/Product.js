@@ -3,20 +3,20 @@ const mongoose = require('mongoose')
 const notEmpty = require('./Validation')
 
 const ProductSchema = new mongoose.Schema({
-    name: {
+    title: {
         type:String,
         required:[true,'must contain value'],
         trim:true,
         maxlenght:[50, "name can't be that long"],
         unique:true
-    },image: {
+    },img: {
         type:String,
         required:[true,'must contain value']
-    },dateOfRelease: {
+    },releaseDate: {
         type:String,
         required:[true,'must contain value'],
         trim:true
-    },genra: {
+    },genre: {
         type:[String],
         required:true,
         validate:[notEmpty,'must contain value']
@@ -25,6 +25,15 @@ const ProductSchema = new mongoose.Schema({
         required:[true,'must contain value'],
         trim:true,
         maxlenght:[50, "name can't be that long"]
+    },bestSeller:{
+        type: Boolean,
+        default:false
+    },newBook:{
+        type:Boolean,
+        default:true
+    },description:{
+        type:String,
+        required:[true,'must contain value']
     }
 })
 
