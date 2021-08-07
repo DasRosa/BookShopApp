@@ -6,6 +6,7 @@ import Home from './components/body/Home/Home'
 import About from './components/body/About/About'
 import Error from './components/body/Error/Error'
 import Test from './components/test/Test'
+import Products from './components/body/Products/Products'
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Route>
         <Route path='/test'>
           <Test />
+        </Route>
+        <Route path='/products'>
+          <Products />
         </Route>
         <Route path='*'>
           <Error />
