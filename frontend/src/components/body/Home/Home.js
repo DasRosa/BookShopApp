@@ -1,36 +1,51 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { axios } from '../../../axios'
-import { Link } from 'react-router-dom'
 import './Home.css'
-import { newBooks, bestSellers } from './books';
 
 const Home = () => {
-    // const [books, setBooks] = useState([])
-    // const getBooks = async () => {
-    //     const res = await axios.get('api/v1/product/').catch((err) => console.log(err))
+    const [newBooks, setNewBooks] = useState([])
+    const [bestSellers, setBestSellers] = useState([])
+
+    const getNewBooks = async () => {
+        const res = await axios
+          .get('api/v1/products/')
+          .catch((err) => console.log(err))
         
-    //     if (res && res.books) {
-    //         console.log(res.books.test)
-    //         setBooks(res.books.test)
-    //     }
-    // }
+        if (res && res.data) {
+            let newBooks = res.data.products.filter(product => product.newBook === true)
+            setNewBooks(newBooks)
+        }
+    }
 
-    // useEffect(() => {
-    //     getBooks()
-    // }, [])
+    const getBestSellers = async () => {
+        const res = await axios.get('api/v1/products').catch((err) => console.log(err))
 
-    const Book = ({img, title, author}) => {
+        if (res && res.data) {
+            let bestSellers = res.data.products.filter(product => product.bestSeller === true)
+            setBestSellers(bestSellers)
+        }
+    }
+
+
+    useEffect(() => {
+      getNewBooks()
+      getBestSellers()
+      // eslint-disable-next-line
+    }, [])
+
+    const Book = (book) => {
     return (
         <article className='book'>
-            <a href="/products">
-                <img src={img} alt="" width="180" height="260"/>
-                <h1>{title}</h1>
+            <a href={`/products/${book._id}`}>
+                <img src={book.img} alt="" width="180" height="260"/>
+                <h1>{book.title}</h1>
             </a>
-            <h4>{author}</h4>
+            <h4>{book.author}</h4>
         </article>
     );
     };
+
     return (
         <div>
             <img src="https://i.im.ge/2021/08/05/hQX68.jpg" alt="" className="image"/>
@@ -41,9 +56,7 @@ const Home = () => {
             <div className='block' style={{top: 'calc(50% - 11px/2 - 589px)'}}>
                 <section className='booklist'>
                     {bestSellers.map((book) => {
-                        return (
-                            <Book key={book.id} {...book}></Book>
-                        );
+                        return <Book key={book._id} {...book}></Book>
                     })}
                 </section>
             </div>
@@ -55,7 +68,7 @@ const Home = () => {
                 <section className='booklist'>
                     {newBooks.map((book) => {
                         return (
-                            <Book key={book.id} {...book}></Book>
+                            <Book key={book._id} {...book}></Book>
                         );
                     })}
                 </section>
