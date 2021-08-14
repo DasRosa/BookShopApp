@@ -34,6 +34,9 @@ const ProductSchema = new mongoose.Schema({
     },description:{
         type:String,
         required:[true,'must contain value']
+    },price:{
+        type:Number,
+        required: [true,'must contain value']
     }
 })
 
