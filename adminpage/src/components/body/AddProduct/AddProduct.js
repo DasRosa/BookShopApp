@@ -10,6 +10,7 @@ const AddProduct = () => {
   const [bestSeller, setBestSeller] = useState()
   const [releaseDate, setReleaseDate] = useState()
   const [description, setDescription] = useState()
+  const [price, setPrice] = useState()
 
   const changeImg = (e) => {
     setImg(e.target.value)
@@ -43,6 +44,10 @@ const AddProduct = () => {
     setBestSeller(e.target.checked)
   }
 
+  const changePrice = (e) => {
+    setPrice(e.target.value)
+  }
+
   const handleSubmit = async () => {
     console.log(genre)
     const newProduct = {
@@ -54,6 +59,7 @@ const AddProduct = () => {
       newBook,
       releaseDate,
       description,
+      price
     }
     await axios
       .post(`/api/v1/products/`, newProduct)
@@ -85,11 +91,19 @@ const AddProduct = () => {
         </div>
         <div>
           <label>New Book: </label>
-          <input type='checkbox' value={newBook || ''} onChange={changeNewBook} />
+          <input
+            type='checkbox'
+            value={newBook || ''}
+            onChange={changeNewBook}
+          />
         </div>
         <div>
           <label>Best Seller: </label>
-          <input type='checkbox' value={bestSeller || ''} onChange={changeBestSeller} />
+          <input
+            type='checkbox'
+            value={bestSeller || ''}
+            onChange={changeBestSeller}
+          />
         </div>
         <div>
           <label>Release Date: </label>
@@ -106,6 +120,14 @@ const AddProduct = () => {
             size='150'
             value={description || ''}
             onChange={changeDescription}
+          />
+        </div>
+        <div>
+          <label>Price: </label>
+          <input
+            type='number'
+            value={price || ''}
+            onChange={changePrice}
           />
         </div>
       </form>

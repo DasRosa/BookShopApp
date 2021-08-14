@@ -11,6 +11,7 @@ const EditProduct = () => {
   const [bestSeller, setBestSeller] = useState()
   const [releaseDate, setReleaseDate] = useState()
   const [description, setDescription] = useState()
+  const [price, setPrice] = useState()
   
   const { id } = useParams()
 
@@ -25,6 +26,7 @@ const EditProduct = () => {
       setBestSeller(res.data.product.bestSeller)
       setReleaseDate(res.data.product.releaseDate)
       setDescription(res.data.product.description)
+      setPrice(res.data.product.price)
     }
   }
 
@@ -65,9 +67,13 @@ const EditProduct = () => {
     setBestSeller(e.target.checked)
   }
 
+  const changePrice = (e) => {
+    setPrice(e.target.value)
+  }
+
   const handleSubmit = async () => {
     console.log(genre)
-    const newProduct = { img, title, genre: genre.split(" "), author, newBook, bestSeller, releaseDate, description }
+    const newProduct = { img, title, genre: genre.split(" "), author, newBook, bestSeller, releaseDate, description, price }
     await axios.patch(`/api/v1/products/${id}`, newProduct).catch((err) => console.log(err))
     console.log(newProduct)
   }
@@ -127,6 +133,14 @@ const EditProduct = () => {
             size='150'
             value={description || ''}
             onChange={changeDescription}
+          />
+        </div>
+        <div>
+          <label>Price: </label>
+          <input 
+            type="number" 
+            value={price || ''}
+            onChange={changePrice}
           />
         </div>
       </form>

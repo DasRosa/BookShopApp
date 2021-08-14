@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { axios } from '../../../axios'
 import { Link, useParams } from 'react-router-dom'
+import EditProduct from '../EditProduct/EditProduct'
 
 const Product = () => {
     const [product, setProduct] = useState('')
