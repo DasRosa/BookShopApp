@@ -1,0 +1,84 @@
+.aboutImg {
+  position: absolute;
+  width: 400px;
+  height: auto;
+  left: 25%;
+  top: 30px;
+  z-index: 100;
+}
+.aboutHeadding {
+  position: relative;
+  height: 150px;
+  top: 80px;
+
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 46px;
+  letter-spacing: -0.02em;
+}
+p {
+  width: 100%;
+  position: relative;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: large;
+}
+.slider-container {
+  height: 85%;
+  width: 80%;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.menu {
+  position: absolute;
+  left: 0;
+  z-index: 900;
+  width: 100%;
+  bottom: 0;
+}
+
+.menu label {
+  cursor: pointer;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50px;
+  margin: 0 0.2em 1em;
+  transition: all 0.3s ease;
+}
+.menu label:hover {
+  background: #21415e;
+}
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  z-index: 10;
+  padding: 8em 1em 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  transition: left 0s 0.75s;
+}
+
+[id^="slide"]:checked + .slide {
+  left: 0;
+  z-index: 100;
+  transition: left 0.65s ease-out;
+}
+
+.slide-1 {
+  background-image: url("https://media.timeout.com/images/103637416/image.jpg");
+}
+.slide-2 {
+  background-image: url("http://www.achuka.co.uk/images/newham/newham-101.jpg");
+}
+.slide-3 {
+  background-image: url("http://bookshopbivar.com/wp-content/uploads/2014/06/P5295265.jpg");
+}
