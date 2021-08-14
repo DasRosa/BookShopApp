@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const connectDB= require('../db/connect')
 const notEmpty = require('./Validation')
 
 const ProductSchema = new mongoose.Schema({
@@ -37,4 +37,4 @@ const ProductSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Product', ProductSchema)
+module.exports = connectDB.model('Product', ProductSchema)

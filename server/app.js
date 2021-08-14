@@ -5,7 +5,6 @@ const passport = require('passport')
 const crypto = require('crypto')
 const MongoStore = require('connect-mongo')(session)
 const app = express()
-// const auth = require('./authentication')
 
 require('dotenv').config()
 
