@@ -11,7 +11,7 @@ const Product = () => {
         if (res && res.data) {
             setProduct(res.data.product)
         }
-    }   
+    }
 
     useEffect(() => {
         getProduct()
@@ -19,10 +19,12 @@ const Product = () => {
 
     return (
       <div>
-        <img src={product.image} alt='not available' />
-        <h4>Name: {product.name}</h4>
-        <h4>Genra: {product.genra}</h4>
+        <img src={product.img} alt='not available' />
+        <h4>Title: {product.title}</h4>
+        <h4>Genre: {product.genre}</h4>
         <h4>Author: {product.author}</h4>
+        <h4>Release Date: {product.releaseDate}</h4>
+        <h4>Description: {product.description}</h4>
         <Link to={`/products/${product._id}/edit`}>
           <h5>Edit</h5>
         </Link>
