@@ -10,43 +10,36 @@ const Product = () => {
 
     const getProduct = async () => {
         const res = await axios
-          .get(`/api/v1/products/${id}`)
-          .catch((err) => console.log(err))
+            .get(`/api/v1/products/${id}`)
+            .catch((err) => console.log(err))
         
-          if (res && res.data) {
+            if (res && res.data) {
             setProduct(res.data.product)
-          }
+            }
     }
 
     useEffect(() => {
-      getProduct()
+        getProduct()
       // eslint-disable-next-line
     }, [])
 
     return (
         <div>
-        <div
-            className='block'
-            style={{
-            height: 200,
-            marginTop: 50,
-            top: 'calc(50% - 273px/2 - 1274.5px)',
-            background: '#FCDD3A',
-            }}
-        >
-            <h1 className='title2' style={{ position: 'relative', top: 80 }}>
+        <div className='block' style={{height:250, backgroundColor:'#99ddff', marginBottom:30}}>
+            <h1 className='title3' style={{ position: 'relative', top: '35%'}}>
             product
             </h1>
-            <h4 className='title1' style={{ position: 'relative', top: 85 }}>
+            <h4 className='title1' style={{ position: 'relative', top: '38%' }}>
             {product.title}
             </h4>
         </div>
-        <div
-            className='row'
+        {/* <div
+            className='block'
             style={{
             position: 'relative',
+            height:800,
             top: 'calc(50% - 273px/2 - 948.5px)',
-            backgroundColor: 'white',
+            backgroundColor: 'pink',
             }}
         >
             <div className='column1'>
@@ -58,7 +51,7 @@ const Product = () => {
             <button
                 type='button'
                 className='btn'
-                style={{ position: 'absolute', top: 550, left: '40%' }}
+                style={{ position: 'relative', width:150, height:30}}
             >
                 Add to Cart
             </button>
@@ -93,6 +86,27 @@ const Product = () => {
             >
             related products
             </h1>
+        </div> */}
+        <div className='book-container'>
+            <img 
+                src={product.img}
+                alt={product.title}
+            />
+            <div className='book-info'>
+                <h1>{product.title}</h1>
+                <p>
+                    <span className='book-data'>author :</span> {product.author}
+                </p>
+                <p>
+                    <span className='book-data'>genre :</span> {product.genre && product.genre.join(", ")}
+                </p>
+                <p>
+                    <span className='book-data'>date of release :</span> {product.releaseDate}
+                </p>
+                <p>
+                    <span className='book-data'>description :</span> {product.description}
+                </p>
+            </div>
         </div>
         </div>
     )
