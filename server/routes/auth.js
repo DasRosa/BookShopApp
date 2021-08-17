@@ -3,11 +3,14 @@ const router = express.Router()
 const passport = require('passport')
 
 const {createUser,getLoginForm,getRegisterForm,getAuthPage,getLoginFail,getLogOut} = require('../controllers/auth')
+const { addItem,getAllUser,deleteItem,getCart} = require('../controllers/cart_Items')
 
 router.route('/').get(getAuthPage)
 router.route('/login').get(getLoginForm).post(passport.authenticate('local',{failureRedirect: '/login-failure', successRedirect: '/api/v1/authentication'}))
 router.route('/register').get(getRegisterForm).post(createUser)
 router.route('/login-failure').get(getLoginFail)
 router.route('/logout').get(getLogOut)
-
+router.route('/:id').post(addItem).delete(deleteItem)
+router.route('/admin').get(getAllUser)
+router.route('/user').get(getCart)
 module.exports = router
