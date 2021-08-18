@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { useGlobalContext } from '../../../context'
+import './EditProduct.css'
+import { FaTimes } from 'react-icons/fa'
 import { axios } from '../../../axios'
 import { useParams } from 'react-router-dom'
 
@@ -78,76 +81,94 @@ const EditProduct = () => {
     console.log(newProduct)
   }
 
+  const { isModalOpen, closeModal } = useGlobalContext();
   return (
-    <div>
-      <form>
-        <div>
-          <label>Image: </label>
-          <input type='text' value={img || ''} onChange={changeImg} />
-        </div>
-        <div>
-          <img src={img} alt='not available' onChange={changeImg} />
-        </div>
-        <div>
-          <label>Title: </label>
-          <input type='text' value={title || ''} onChange={changeTitle} />
-        </div>
-        <div>
-          <label>Genre: </label>
-          <input type='text' value={genre || ''} onChange={changeGenre} />
-        </div>
-        <div>
-          <label>Author: </label>
-          <input type='text' value={author || ''} onChange={changeAuthor} />
-        </div>
-        <div>
-          <label>New Book: </label>
-          <input
-            type='checkbox'
-            checked={newBook && 'checked'}
-            value={newBook || ''}
-            onChange={changeNewBook}
-          />
-        </div>
-        <div>
-          <label>Best Seller: </label>
-          <input
-            type='checkbox'
-            checked={bestSeller && 'checked'}
-            value={bestSeller || ''}
-            onChange={changeBestSeller}
-          />
-        </div>
-        <div>
-          <label>Release Date: </label>
-          <input
-            type='text'
-            value={releaseDate || ''}
-            onChange={changeReleaseDate}
-          />
-        </div>
-        <div>
-          <label>Description: </label>
-          <input
-            type='text'
-            size='150'
-            value={description || ''}
-            onChange={changeDescription}
-          />
-        </div>
-        <div>
-          <label>Price: </label>
-          <input 
-            type="number" 
-            value={price || ''}
-            onChange={changePrice}
-          />
-        </div>
-      </form>
-      <div>
-        <button type='submit' onClick={handleSubmit}>
-          Submit
+    <div className={`${isModalOpen?'modal-overlay show-modal':'modal-overlay'}`}>
+
+      <div className='modal-container'>
+        <button className='close-modal-btn' onClick={closeModal}>
+          <FaTimes/>
         </button>
+        <div className='block'>
+          <h3>edit form</h3>
+        </div>
+        
+        <div className='modal-info'>
+          <div className='modal-img'>
+            <img src={img} alt='not available' onChange={changeImg} width="100%" height="100%"/>
+          </div>
+          <form>
+          <div>
+            <label>Image: </label>
+            <input type='text' value={img || ''} onChange={changeImg} className='input-text'/>
+          </div>
+          <div>
+            <label>Title: </label>
+            <input type='text' value={title || ''} onChange={changeTitle} className='input-text'/>
+          </div>
+          <div>  
+            <label>Genre: </label>
+            <input type='text' value={genre || ''} onChange={changeGenre} className='input-text'/>
+          </div>
+          <div>
+            <label>Author: </label>
+            <input type='text' value={author || ''} onChange={changeAuthor} className='input-text'/>
+          </div>
+          <div>
+            <label>New Book: </label>
+            <input
+              type='checkbox'
+              checked={newBook && 'checked'}
+              value={newBook || ''}
+              onChange={changeNewBook}
+              className='input-checkbox'
+            />
+            <label>Best Seller: </label>
+            <input
+              type='checkbox'
+              checked={bestSeller && 'checked'}
+              value={bestSeller || ''}
+              onChange={changeBestSeller}
+              className='input-checkbox'
+            />
+          </div>
+          <div>
+            <label>Release Date: </label>
+            <input
+              type='text'
+              value={releaseDate || ''}
+              onChange={changeReleaseDate}
+              className='input-text'
+              style={{width:130}}
+            />
+          </div>
+          <div>
+            <label>Price: </label>
+            <input 
+              type="number" 
+              value={price || ''}
+              onChange={changePrice}
+              className='input-text'
+              style={{width:80}}
+            />
+          </div>
+          <div>
+            <label>Description: </label>
+            <textarea
+              size='150'
+              value={description || ''}
+              onChange={changeDescription}
+              className='input-description'
+            />
+          </div>
+          </form>
+        </div>
+        
+      <div className='block'>
+        <button type='submit' onClick={handleSubmit} className='btn' style={{margin:20}}>
+          <h5>Submit</h5>
+        </button>
+      </div>
       </div>
     </div>
   )

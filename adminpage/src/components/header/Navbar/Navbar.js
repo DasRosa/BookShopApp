@@ -1,18 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './Navbar.css'
+import { useGlobalContext } from '../../../context';
+import { FaBars } from 'react-icons/fa';
+import Sidebar from './Sidebar';
+import EditProduct from '../../body/EditProduct/EditProduct';
 
 const Navbar = () => {
+    const { openSidebar } = useGlobalContext();
     return (
-        <div>
-            <ul>
-                <li>
-                    <Link to='/'>Home</Link>
-                </li>
-                <li>
-                    <Link to='/products'>Products</Link>
-                </li>
-            </ul>
-        </div>
+        <main>
+            <div className='bar'>
+                <button onClick={openSidebar} className='sidebar-toggle'>
+                    <FaBars />
+                </button>
+            </div>
+            <Sidebar />
+        </main>
+        
     )
 }
 

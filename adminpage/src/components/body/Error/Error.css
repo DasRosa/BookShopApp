@@ -1,0 +1,11 @@
+.error {
+  width: 100%;
+  background-color: transparent;
+  text-align: center;
+}
+
+.error img {
+  position: relative;
+  margin: 0 auto;
+  width: 50%;
+}

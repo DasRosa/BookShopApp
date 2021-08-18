@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { axios } from '../../../axios'
 import { Link } from 'react-router-dom'
+import './Products.css'
 
 const Products = () => {
     const [products, setProducts] = useState([])
@@ -29,32 +30,43 @@ const Products = () => {
     } 
 
     return (
-      <>
-        <Link to={'/products/add'}>
-          <button onClick={addProduct}>Add Product</button>
-        </Link>
-        <h1>This is Product Page</h1>
-        {products.map((product) => {
-          return (
-            <div key={product._id}>
-              <Link to={`/products/${product._id}`}>
-                <img src={product.img} alt='not available' />
-              </Link>
-              <h4>Title: {product.title}</h4>
-              <h4>Genre: {product.genre && product.genre.join(', ')}</h4>
-              <h4>Author: {product.author}</h4>
-              <Link to={`/products/${product._id}/edit`}>
-                <button>
-                  <h5>Edit</h5>
-                </button>
-              </Link>
-              <button onClick={() => deleteProduct(product._id)}>
-                <h5>Delete</h5>
-              </button> 
-            </div>
-          )
-        })}
-      </>
+      <div>
+        <div className='block'>
+          <div className="title">
+            <h2>our products</h2>
+            <div className="underline"></div>
+          </div>
+          <Link to={'/products/add'} onClick={addProduct} className='btn-primary' style={{  marginBottom: 40}}>Add Product</Link>
+        </div>
+        <div className='section-center'>
+          {products.map((product) => {
+            return (
+              <article key={product._id} className='product-item'>
+                <Link to={`/products/${product._id}`}>
+                  <img src={product.img} alt='not available' className='photo'/>
+                </Link>
+                <div className='item-info'>
+                  <header>
+                    <h4 style={{width: 260}}>{product.title}</h4>
+                    <h4 className='price'>${product.price}</h4>
+                  </header>
+                  <p className='item-text'><span style={{fontWeight:'bold'}}>Genre:</span> {product.genre && product.genre.join(', ')}</p>
+                  <p className='item-text'><span style={{fontWeight:'bold'}}>Author:</span> {product.author}</p>
+                  {/* <Link to={`/products/${product._id}/edit`}>
+                    <button>
+                      <h5>Edit</h5>
+                    </button>
+                  </Link> */}
+                  <button onClick={() => deleteProduct(product._id)} className='btn' style={{margin:0}}>
+                    <h5>Delete</h5>
+                  </button>
+                </div>
+              </article>
+            )
+          })}
+        </div>
+        
+      </div>
     )
 }
 
