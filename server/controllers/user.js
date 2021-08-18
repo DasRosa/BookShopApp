@@ -21,6 +21,7 @@ const addItem = async (req,res,next) => {
     }
 }
 
+//admin only
 const getAllUser = async (req,res,next) => {
     try {
         const users = await User.find({})
@@ -67,9 +68,19 @@ const getCart = async (req,res,next) => {
     }
 }
 
+const getUserName = async (req,res,next) =>{
+    try {
+        username = req.user.username
+        res.status(200).json({msg: `your user name is ${username}`})
+    } catch (error) {
+        res.status(500).json({ msg: error })
+    }
+}
+
 module.exports = {
     addItem,
     getAllUser,
     deleteItem,
-    getCart
+    getCart,
+    getUserName
 }

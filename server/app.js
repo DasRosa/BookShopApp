@@ -13,6 +13,8 @@ let cors = require('cors')
 const product = require('./routes/products')
 
 const auth = require('./routes/auth')
+
+const user = require('./routes/user')
 // middleware
 app.use(express.json())
 app.use(express.urlencoded({extends: true}))
@@ -46,6 +48,7 @@ app.use(passport.session())
 // routes
 app.use('/api/v1/products', product)
 app.use('/api/v1/authentication', auth)
+app.use('/api/v1/user',user)
 
 // start
 const start = async () => {
