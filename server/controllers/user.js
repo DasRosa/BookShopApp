@@ -1,4 +1,3 @@
-const { user } = require('../db/connect')
 const Product = require('../models/Product')
 const User = require('../models/User')
 
@@ -24,7 +23,7 @@ const addItem = async (req,res,next) => {
 //admin only
 const getAllUser = async (req,res,next) => {
     try {
-        const users = await User.find({})
+        const users = await User.find({}).populate({path:"cart", model:"Product"})
         res.status(200).json({ users })
     } catch (error) {
         res.status(500).json({ msg: error })
@@ -59,8 +58,9 @@ const deleteItem = async (req,res,next) => {
 
 const getCart = async (req,res,next) => {
     try {
-        const user = req.user
-        cart = user.cart
+        const userId = req.user._id
+        const user = await User.findById({_id: userId}).populate({path: "cart" , model: "Product"})
+        const cart = user.cart
 
         res.status(200).json({cart})
     } catch (error) {
