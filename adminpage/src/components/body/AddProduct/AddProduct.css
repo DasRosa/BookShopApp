@@ -14,20 +14,26 @@
 @media screen and (min-width: 700px) {
   .add-container {
     display: grid;
-    grid-template-columns: 5fr 2fr;
+    grid-template-columns: 3fr 2fr;
     align-items: center;
   }
   .add-img {
     margin-left: 50px;
   }
+  .input-description {
+    width: 100%;
+  }
 }
 @media screen and (min-width: 900px) {
   .add-container {
-    grid-template-columns: 3fr 2.5fr;
+    grid-template-columns: 2.5fr 2.5fr;
   }
   .add-img {
     width: 350px;
     height: 450px;
+  }
+  .input-description {
+    height: 200px;
   }
 }
 @media screen and (min-width: 1100px) {

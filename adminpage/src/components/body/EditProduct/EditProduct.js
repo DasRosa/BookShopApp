@@ -14,6 +14,7 @@ const EditProduct = () => {
   const [bestSeller, setBestSeller] = useState()
   const [releaseDate, setReleaseDate] = useState()
   const [description, setDescription] = useState()
+  const [price, setPrice] = useState()
   
   const { id } = useParams()
 
@@ -28,6 +29,7 @@ const EditProduct = () => {
       setBestSeller(res.data.product.bestSeller)
       setReleaseDate(res.data.product.releaseDate)
       setDescription(res.data.product.description)
+      setPrice(res.data.product.price)
     }
   }
 
@@ -68,9 +70,13 @@ const EditProduct = () => {
     setBestSeller(e.target.checked)
   }
 
+  const changePrice = (e) => {
+    setPrice(e.target.value)
+  }
+
   const handleSubmit = async () => {
     console.log(genre)
-    const newProduct = { img, title, genre: genre.split(" "), author, newBook, bestSeller, releaseDate, description }
+    const newProduct = { img, title, genre: genre.split(" "), author, newBook, bestSeller, releaseDate, description, price }
     await axios.patch(`/api/v1/products/${id}`, newProduct).catch((err) => console.log(err))
     console.log(newProduct)
   }
@@ -137,6 +143,16 @@ const EditProduct = () => {
             />
           </div>
           <div>
+            <label>Price: </label>
+            <input 
+              type="number" 
+              value={price || ''}
+              onChange={changePrice}
+              className='input-text'
+              style={{width:80}}
+            />
+          </div>
+          <div>
             <label>Description: </label>
             <textarea
               size='150'
@@ -147,9 +163,10 @@ const EditProduct = () => {
           </div>
           </form>
         </div>
+        
       <div className='block'>
-        <button type='submit' onClick={handleSubmit} className='btn' style={{margin:0}}>
-          Submit
+        <button type='submit' onClick={handleSubmit} className='btn' style={{margin:20}}>
+          <h5>Submit</h5>
         </button>
       </div>
       </div>

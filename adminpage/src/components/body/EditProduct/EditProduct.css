@@ -24,6 +24,7 @@
   /* display: grid; */
   place-items: center;
   position: absolute;
+  overflow: auto;
 }
 .modal-info {
   display: grid;
@@ -68,8 +69,8 @@ label {
   width: 30px;
 }
 .modal-img {
-  width: 200px;
-  height: 300px;
+  width: 230px;
+  height: 320px;
   border: 1px solid black;
   text-align: center;
   margin: 0 auto;
@@ -80,13 +81,13 @@ label {
 @media screen and (min-width: 700px) {
   .modal-info {
     /* display: grid; */
-    grid-template-columns: 2fr 2.5fr;
+    grid-template-columns: 2.5fr 2.5fr;
     gap: 10px;
     align-items: center;
   }
   .modal-img {
     width: 250px;
-    height: 400px;
+    height: 350px;
   }
   .input-description {
     width: 90%;
@@ -108,12 +109,12 @@ label {
 }
 @media screen and (min-width: 1100px) {
   .modal-container {
-    width: 80%;
+    width: 70%;
     height: 93%;
   }
   .modal-img {
-    width: 300px;
-    height: 430px;
+    width: 330px;
+    height: 450px;
   }
   .modal-info {
     grid-template-columns: 3fr 3.5fr;

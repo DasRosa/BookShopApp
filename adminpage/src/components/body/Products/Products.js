@@ -47,7 +47,8 @@ const Products = () => {
                 </Link>
                 <div className='item-info'>
                   <header>
-                    <h4>{product.title}</h4>
+                    <h4 style={{width: 260}}>{product.title}</h4>
+                    <h4 className='price'>${product.price}</h4>
                   </header>
                   <p className='item-text'><span style={{fontWeight:'bold'}}>Genre:</span> {product.genre && product.genre.join(', ')}</p>
                   <p className='item-text'><span style={{fontWeight:'bold'}}>Author:</span> {product.author}</p>
