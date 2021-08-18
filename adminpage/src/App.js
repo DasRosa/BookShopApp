@@ -25,9 +25,9 @@ function App() {
           <AddProduct />
         </Route>
         <Route exact path='/products/:id' children={<Product />}></Route>
-        <Route path='/products/:id/edit'>
+        {/* <Route path='/products/:id/edit'>
           <EditProduct />
-        </Route>
+        </Route> */}
         <Route path='*'>
           <Error />
         </Route>

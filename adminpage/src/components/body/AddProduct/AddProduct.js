@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { axios } from '../../../axios'
+import './AddProduct.css'
 
 const AddProduct = () => {
   const [img, setImg] = useState()
@@ -63,54 +64,72 @@ const AddProduct = () => {
 
   return (
     <div>
-      <form>
-        <div>
-          <label>Image: </label>
-          <input type='text' value={img || ''} onChange={changeImg} />
+      <div className='title'>
+        <h2>add product</h2>
+        <div className='underline'></div>
+      </div>
+      <div className='add-container'>
+        <div className='add-img'>
+          <img src={img} alt='not available' onChange={changeImg} width="100%" height="100%"/>
         </div>
-        <div>
-          <img src={img} alt='not available' onChange={changeImg} />
-        </div>
-        <div>
-          <label>Title: </label>
-          <input type='text' value={title || ''} onChange={changeTitle} />
-        </div>
-        <div>
-          <label>Genre: </label>
-          <input type='text' value={genre || ''} onChange={changeGenre} />
-        </div>
-        <div>
-          <label>Author: </label>
-          <input type='text' value={author || ''} onChange={changeAuthor} />
-        </div>
-        <div>
-          <label>New Book: </label>
-          <input type='checkbox' value={newBook || ''} onChange={changeNewBook} />
-        </div>
-        <div>
-          <label>Best Seller: </label>
-          <input type='checkbox' value={bestSeller || ''} onChange={changeBestSeller} />
-        </div>
-        <div>
-          <label>Release Date: </label>
-          <input
-            type='text'
-            value={releaseDate || ''}
-            onChange={changeReleaseDate}
-          />
-        </div>
-        <div>
-          <label>Description: </label>
-          <input
-            type='text'
-            size='150'
-            value={description || ''}
-            onChange={changeDescription}
-          />
-        </div>
-      </form>
-      <div>
-        <button type='submit' onClick={handleSubmit}>
+        <form>
+          <div>
+            <label>Image: </label>
+            <input type='text' value={img || ''} onChange={changeImg} className='input-text'/>
+          </div>
+          <div>
+            <label>Title: </label>
+            <input type='text' value={title || ''} onChange={changeTitle} className='input-text'/>
+          </div>
+          <div>  
+            <label>Genre: </label>
+            <input type='text' value={genre || ''} onChange={changeGenre} className='input-text'/>
+          </div>
+          <div>
+            <label>Author: </label>
+            <input type='text' value={author || ''} onChange={changeAuthor} className='input-text'/>
+          </div>
+          <div>
+            <label>New Book: </label>
+            <input
+              type='checkbox'
+              checked={newBook && 'checked'}
+              value={newBook || ''}
+              onChange={changeNewBook}
+              className='input-checkbox'
+            />
+            <label>Best Seller: </label>
+            <input
+              type='checkbox'
+              checked={bestSeller && 'checked'}
+              value={bestSeller || ''}
+              onChange={changeBestSeller}
+              className='input-checkbox'
+            />
+          </div>
+          <div>
+            <label>Release Date: </label>
+            <input
+              type='text'
+              value={releaseDate || ''}
+              onChange={changeReleaseDate}
+              className='input-text'
+              style={{width:130}}
+            />
+          </div>
+          <div>
+            <label>Description: </label>
+            <textarea
+              size='150'
+              value={description || ''}
+              onChange={changeDescription}
+              className='input-description'
+            />
+          </div>
+        </form>
+      </div>
+      <div className='block'>
+        <button type='submit' onClick={handleSubmit} className='btn'>
           Submit
         </button>
       </div>
