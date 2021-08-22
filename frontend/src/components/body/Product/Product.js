@@ -23,15 +23,23 @@ const Product = () => {
       // eslint-disable-next-line
     }, [])
 
+    const addToCart = async (id) => {
+        await axios.post(`/api/v1/user/${id}`)
+        console.log("Add Successfully")
+    }
+
     return (
-        <div>
-        <div className='block' style={{height:250, backgroundColor:'#99ddff', marginBottom:30}}>
-            <h1 className='title3' style={{ position: 'relative', top: '35%'}}>
+      <div>
+        <div
+          className='block'
+          style={{ height: 250, backgroundColor: '#99ddff', marginBottom: 30 }}
+        >
+          <h1 className='title3' style={{ position: 'relative', top: '35%' }}>
             product
-            </h1>
-            <h4 className='title1' style={{ position: 'relative', top: '38%' }}>
+          </h1>
+          <h4 className='title1' style={{ position: 'relative', top: '38%' }}>
             {product.title}
-            </h4>
+          </h4>
         </div>
         {/* <div
             className='block'
@@ -88,27 +96,28 @@ const Product = () => {
             </h1>
         </div> */}
         <div className='book-container'>
-            <img 
-                src={product.img}
-                alt={product.title}
-            />
-            <div className='book-info'>
-                <h1>{product.title}</h1>
-                <p>
-                    <span className='book-data'>author :</span> {product.author}
-                </p>
-                <p>
-                    <span className='book-data'>genre :</span> {product.genre && product.genre.join(", ")}
-                </p>
-                <p>
-                    <span className='book-data'>date of release :</span> {product.releaseDate}
-                </p>
-                <p>
-                    <span className='book-data'>description :</span> {product.description}
-                </p>
-            </div>
+          <img src={product.img} alt={product.title} />
+          <div className='book-info'>
+            <h1>{product.title}</h1>
+            <button onClick={() => addToCart(product._id)}>Add To Cart</button>
+            <p>
+              <span className='book-data'>author :</span> {product.author}
+            </p>
+            <p>
+              <span className='book-data'>genre :</span>{' '}
+              {product.genre && product.genre.join(', ')}
+            </p>
+            <p>
+              <span className='book-data'>date of release :</span>{' '}
+              {product.releaseDate}
+            </p>
+            <p>
+              <span className='book-data'>description :</span>{' '}
+              {product.description}
+            </p>
+          </div>
         </div>
-        </div>
+      </div>
     )
     }
 

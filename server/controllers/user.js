@@ -68,12 +68,21 @@ const getCart = async (req,res,next) => {
     }
 }
 
-const getUserName = async (req,res,next) =>{
+const getUserName = (req,res,next) =>{
     try {
-        username = req.user.username
-        res.status(200).json({msg: `your user name is ${username}`})
+        res.status(200).json({username: req.user.username})
     } catch (error) {
         res.status(500).json({ msg: error })
+    }
+}
+
+const getUserId = (req, res, next) => {
+    try {
+        res.status(200).json({
+            id: req.user._id
+        })
+    } catch (err) {
+        res.status(500).json({ msg: err })
     }
 }
 
@@ -82,5 +91,6 @@ module.exports = {
     getAllUser,
     deleteItem,
     getCart,
-    getUserName
+    getUserName,
+    getUserId
 }

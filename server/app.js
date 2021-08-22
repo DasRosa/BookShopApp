@@ -4,6 +4,10 @@ const connectDB = require('./db/connect')
 const passport = require('passport')
 const crypto = require('crypto')
 const MongoStore = require('connect-mongo')(session)
+const cookieParser = require("cookie-parser")
+const passportLocal = require("passport-local")
+const bodyParser = require("body-parser")
+
 const app = express()
 
 require('dotenv').config()
@@ -11,16 +15,16 @@ require('dotenv').config()
 let cors = require('cors')
 
 const product = require('./routes/products')
-
 const auth = require('./routes/auth')
-
 const user = require('./routes/user')
+
 // middleware
 app.use(express.json())
 app.use(express.urlencoded({extends: true}))
-app.use(cors())
-
-
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}))
 
 // port
 const port = process.env.PORT || 5000
@@ -48,7 +52,7 @@ app.use(passport.session())
 // routes
 app.use('/api/v1/products', product)
 app.use('/api/v1/authentication', auth)
-app.use('/api/v1/user',user)
+app.use('/api/v1/user', user)
 
 // start
 const start = async () => {

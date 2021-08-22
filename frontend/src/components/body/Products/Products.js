@@ -21,6 +21,11 @@ const Products = () => {
         getProducts()
     }, [])
 
+    const addToCart = async (id) => {
+        await axios.post(`/api/v1/user/${id}`)
+        console.log("Add Successfully")
+    }
+
     const Book = (book) => {
         return (
         <li className='product'>
@@ -29,6 +34,7 @@ const Products = () => {
             </a>
             <h4>{book.author}</h4>
             <h3>{book.title}</h3>
+            <button onClick={() => addToCart(book._id)}>Add to Cart</button>
         </li>
     );
     }
